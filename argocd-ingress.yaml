@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.kubernetes.io/backends: '{"k8s1-f5edca61-argocd-argocd-server-external-80-0a3a2094":"Unknown"}'
+    ingress.kubernetes.io/forwarding-rule: k8s2-fr-3npdkb8h-argocd-ingress-argocd-6f5q7p31
+    ingress.kubernetes.io/target-proxy: k8s2-tp-3npdkb8h-argocd-ingress-argocd-6f5q7p31
+    ingress.kubernetes.io/url-map: k8s2-um-3npdkb8h-argocd-ingress-argocd-6f5q7p31
+  name: argocd-ingress
+  namespace: argocd
+spec:
+  defaultBackend:
+    service:
+      name: argocd-server-external
+      port:
+        number: 80

@@ -1,0 +1,11 @@
+kubectl create ns argocd
+kubectl apply -n argocd -f install.yaml 
+kubectl apply -f svc-argocd-server-external.yaml 
+kubectl apply -f argocd-backend-config.yaml 
+kubectl apply -f argocd-ingress.yaml 
+
+# ingress resource and routing takes a while ... be patient, event if ingress resource is already created
+
+# get admin password
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+
